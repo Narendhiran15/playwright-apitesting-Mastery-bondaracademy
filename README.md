@@ -1,2 +1,2 @@
-# playwright-apitesting-Mastery-bondaracademy
+# playwright-apitesting
 API testing custom Framework 
