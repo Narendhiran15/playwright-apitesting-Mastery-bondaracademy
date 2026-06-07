@@ -2,6 +2,8 @@ import { test } from '../utils/fixtures'
 import { RequestHandler } from '../utils/request-handler'
 import { expect } from '@playwright/test'
 import { validateSchema } from '../utils/schema-validator'
+import { APIlogger } from '../utils/logger'
+
 
 let authToken: string
 
@@ -33,6 +35,14 @@ test('First test API Articles', async ({ api }) => {
     expect(response.articles.length).toBeLessThanOrEqual(10)
     expect(response.articlesCount).toEqual(10)
 
+})
+
+test('logger',()=>{
+    const logger = new APIlogger()
+    logger.logRequest('POST','https://sampleurl.com',{Authorization:'authtoken'},{foo:'bar'})
+    logger.logResponse(200,{foo:'bar'})
+    const logs = logger.getRecentlogs()
+    console.log(logs)
 })
 
 test('test case 2 : Get test tags', async ({ api }) => {
